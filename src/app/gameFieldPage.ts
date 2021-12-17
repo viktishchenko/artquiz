@@ -1,5 +1,6 @@
 import Control from "../common/control";
 import { ArtistQuestionView } from "./artistQuestionView";
+import { PictureQuestionView } from "./pictureQuestionView";
 import { IArtistQuestionData } from "./IArtistQuestionData";
 
 interface IQuizOptions {
@@ -7,7 +8,6 @@ interface IQuizOptions {
   categoryIndex: number;
 }
 
-// interface IQuizResults {}
 type IQuizResults = Array<boolean>;
 
 export class GameFieldPage extends Control {
@@ -47,17 +47,13 @@ export class GameFieldPage extends Control {
       { answer: [1, 2, 3, 4], correctAnswerIndex: 3 },
     ];
     this.results = [];
-    this.questionCycle(questions, 0, () => {
+    this.questionCycle(gameOptions.gameName, questions, 0, () => {
       this.onFinish(this.results);
     });
-
-    // const finishButton = new Control(this.node, "button", "", "finish");
-    // finishButton.node.onclick = () => {
-    //   this.onFinish({});
-    // };
   }
 
   questionCycle(
+    gameName: string,
     questions: Array<IArtistQuestionData>,
     index: number,
     onFinish: () => void
@@ -72,11 +68,22 @@ export class GameFieldPage extends Control {
     this.answerIndicatior.node.textContent = this.results
       .map((item) => (item ? "+" : "-"))
       .join(" ");
-    const question = new ArtistQuestionView(this.node, questions[index]);
-    question.onAnswer = (answerIndex) => {
-      question.destroy();
-      this.results.push(answerIndex === questions[index].correctAnswerIndex);
-      this.questionCycle(questions, index + 1, onFinish);
-    };
+    if (gameName === "artista") {
+      const question = new ArtistQuestionView(this.node, questions[index]);
+      question.onAnswer = (answerIndex) => {
+        question.destroy();
+        this.results.push(answerIndex === questions[index].correctAnswerIndex);
+        this.questionCycle(gameName, questions, index + 1, onFinish);
+      };
+    } else if (gameName === "pictures") {
+      const question = new PictureQuestionView(this.node, questions[index]);
+      question.onAnswer = (answerIndex) => {
+        question.destroy();
+        this.results.push(answerIndex === questions[index].correctAnswerIndex);
+        this.questionCycle(gameName, questions, index + 1, onFinish);
+      };
+    } else {
+      throw new Error("Game type is not exist");
+    }
   }
 }
