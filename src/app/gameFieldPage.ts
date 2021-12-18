@@ -1,7 +1,8 @@
 import Control from "../common/control";
 import { ArtistQuestionView } from "./artistQuestionView";
 import { PictureQuestionView } from "./pictureQuestionView";
-import { IArtistQuestionData } from "./IArtistQuestionData";
+// import { IArtistQuestionData } from "./IArtistQuestionData";
+import { IArtistsQuestionData, IPicturesQuestionData } from "./quizDataModel";
 
 interface IQuizOptions {
   gameName: string;
@@ -18,7 +19,11 @@ export class GameFieldPage extends Control {
   results: IQuizResults;
   answerIndicatior: Control<HTMLElement>;
 
-  constructor(parentNode: HTMLElement, gameOptions: IQuizOptions) {
+  constructor(
+    parentNode: HTMLElement,
+    gameOptions: IQuizOptions,
+    questionsData: Array<IArtistsQuestionData | IPicturesQuestionData>
+  ) {
     super(parentNode);
     console.log(`gameOptions`, gameOptions);
     const header = new Control(
@@ -41,20 +46,20 @@ export class GameFieldPage extends Control {
     this.progressIndicatior = new Control(this.node, "div", "", "");
     this.answerIndicatior = new Control(this.node, "div", "", "");
 
-    const questions: Array<IArtistQuestionData> = [
+    /*   const questions: Array<IArtistQuestionData> = [
       { answer: [1, 2, 3, 4], correctAnswerIndex: 1 },
       { answer: [1, 2, 3, 4], correctAnswerIndex: 2 },
       { answer: [1, 2, 3, 4], correctAnswerIndex: 3 },
-    ];
+    ]; */
     this.results = [];
-    this.questionCycle(gameOptions.gameName, questions, 0, () => {
+    this.questionCycle(gameOptions.gameName, questionsData, 0, () => {
       this.onFinish(this.results);
     });
   }
 
   questionCycle(
     gameName: string,
-    questions: Array<IArtistQuestionData>,
+    questions: Array<any>,
     index: number,
     onFinish: () => void
   ) {

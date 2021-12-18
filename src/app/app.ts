@@ -22,10 +22,14 @@ export class App extends Control {
   }
 
   private gameCycle(gameName: string, categoryIndex: number) {
-    const gameField = new GameFieldPage(this.node, {
-      gameName: gameName,
-      categoryIndex: categoryIndex,
-    });
+    const gameField = new GameFieldPage(
+      this.node,
+      {
+        gameName: gameName,
+        categoryIndex: categoryIndex,
+      },
+      this.model.getPicturesQuestion(categoryIndex)
+    );
     gameField.onHome = () => {
       gameField.destroy();
       this.mainCycle();
@@ -50,7 +54,11 @@ export class App extends Control {
   }
 
   private categoryCycle(gameName: string) {
-    const categories = new CategoriesPage(this.node, gameName);
+    const categories = new CategoriesPage(
+      this.node,
+      gameName,
+      this.model.getCategoriesData()
+    );
     categories.onBack = () => {
       categories.destroy();
       this.mainCycle();
