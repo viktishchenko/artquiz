@@ -22,13 +22,19 @@ export class App extends Control {
   }
 
   private gameCycle(gameName: string, categoryIndex: number) {
+    let questions: Array<any>;
+    if (gameName == "artists") {
+      questions = this.model.getArtistsQuestions(categoryIndex);
+    } else if (gameName == "pictures") {
+      questions = this.model.getPicturesQuestions(categoryIndex);
+    } else {
+      throw new Error("Game type is not exists");
+    }
+
     const gameField = new GameFieldPage(
       this.node,
-      {
-        gameName: gameName,
-        categoryIndex: categoryIndex,
-      },
-      this.model.getPicturesQuestion(categoryIndex)
+      { gameName: gameName, categoryIndex: categoryIndex },
+      questions
     );
     gameField.onHome = () => {
       gameField.destroy();

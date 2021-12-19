@@ -77,7 +77,7 @@ export class QuizDataModel {
   /**
    * getPicturesQuestionData
    */
-  public getPicturesQuestion(categoryIndex: number) {
+  public getPicturesQuestions(categoryIndex: number) {
     const questionsPerCategory = this.questionsPerCategory;
     const result: Array<IPicturesQuestionData> = [];
     for (
@@ -87,7 +87,7 @@ export class QuizDataModel {
     ) {
       const answers: Array<string> = [];
       const answersCount = 4;
-      const correctAnswerIndex = Math.floor(Math.random() * 4);
+      const correctAnswerIndex = Math.floor(Math.random() * answersCount);
       const correctAnswer = `./public/img/pictures/${this.data[i].picture}.jpg`;
       for (let j = 0; j < answersCount; j++) {
         if (correctAnswerIndex === j) {
@@ -112,7 +112,36 @@ export class QuizDataModel {
   /**
    * getPicturesQuestionData
    */
-  public getArtistsQuestion() {}
+  public getArtistsQuestions(categoryIndex: number) {
+    const questionsPerCategory = this.questionsPerCategory;
+    const result: Array<IArtistsQuestionData> = [];
+    for (
+      let i = categoryIndex * questionsPerCategory;
+      i < (categoryIndex + 1) * questionsPerCategory;
+      i++
+    ) {
+      const answers: Array<string> = [];
+      const answersCount = 4;
+      const correctAnswerIndex = Math.floor(Math.random() * answersCount);
+      const correctAnswer = this.data[i].author.en;
+      for (let j = 0; j < answersCount; j++) {
+        if (correctAnswerIndex == j) {
+          answers.push(correctAnswer);
+        } else {
+          const randomName =
+            this.data[Math.floor(Math.random() * this.data.length)].author;
+          answers.push(randomName.en);
+        }
+      }
+      const question: IArtistsQuestionData = {
+        artistImgUrl: `./public/img/pictures/${this.data[i].picture}.jpg`,
+        answers: answers,
+        correctAnswerIndex: correctAnswerIndex,
+      };
+      result.push(question);
+    }
+    return result;
+  }
 
   private loadImagesData(url: string): Promise<Array<IPictureData>> {
     return fetch(url)

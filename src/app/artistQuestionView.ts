@@ -11,8 +11,13 @@ export class ArtistQuestionView extends Control {
     const img = new Image(200, 200);
     img.src = questionData.artistImgUrl;
     question.node.append(img);
-    const answerButton = questionData.answers.map((item, idx) => {
-      const button = new Control(this.node, "button", "", ` ${idx.toString()}`);
+    const answerButtons = questionData.answers.map((item, idx) => {
+      const button = new Control(
+        this.node,
+        "button",
+        "",
+        ` ${item.toString()}`
+      );
       button.node.onclick = () => {
         this.onAnswer(idx);
       };
