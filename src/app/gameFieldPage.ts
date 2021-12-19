@@ -3,13 +3,48 @@ import { ArtistQuestionView } from "./artistQuestionView";
 import { PictureQuestionView } from "./pictureQuestionView";
 // import { IArtistQuestionData } from "./IArtistQuestionData";
 import { IArtistsQuestionData, IPicturesQuestionData } from "./quizDataModel";
+import { IQuizSettings } from "./settingsPage";
 
 interface IQuizOptions {
   gameName: string;
   categoryIndex: number;
+  settings: IQuizSettings;
 }
 
 type IQuizResults = Array<boolean>;
+
+export class Timer extends Control {
+  onTimeout: () => void;
+  timer: number;
+  initialTime: number;
+  constructor(parantNode: HTMLElement) {
+    super(parantNode);
+  }
+
+  start(time: number) {
+    this.initialTime = time;
+
+    if (this.timer) {
+      this.stop();
+    }
+    let currentTime = time;
+    const render = (currentTime: number) => {
+      this.node.textContent = `${this.initialTime} / ${currentTime}`;
+    };
+    render(time);
+    this.timer = window.setInterval(() => {
+      currentTime--;
+      render(currentTime);
+      if (currentTime <= 0) {
+        this.onTimeout();
+      }
+    }, 1000);
+  }
+
+  stop() {
+    window.clearInterval(this.timer);
+  }
+}
 
 export class GameFieldPage extends Control {
   onBack: () => void;
@@ -18,6 +53,8 @@ export class GameFieldPage extends Control {
   progressIndicatior: Control<HTMLElement>;
   results: IQuizResults;
   answerIndicatior: Control<HTMLElement>;
+  timer: Timer;
+  gameOptions: IQuizOptions;
 
   constructor(
     parentNode: HTMLElement,
@@ -26,6 +63,7 @@ export class GameFieldPage extends Control {
   ) {
     super(parentNode);
     console.log(`gameOptions`, gameOptions);
+    this.gameOptions = gameOptions;
     const header = new Control(
       this.node,
       "h1",
@@ -43,14 +81,10 @@ export class GameFieldPage extends Control {
       this.onHome();
     };
 
+    this.timer = new Timer(this.node);
     this.progressIndicatior = new Control(this.node, "div", "", "");
     this.answerIndicatior = new Control(this.node, "div", "", "");
 
-    /*   const questions: Array<IArtistQuestionData> = [
-      { answer: [1, 2, 3, 4], correctAnswerIndex: 1 },
-      { answer: [1, 2, 3, 4], correctAnswerIndex: 2 },
-      { answer: [1, 2, 3, 4], correctAnswerIndex: 3 },
-    ]; */
     this.results = [];
     this.questionCycle(gameOptions.gameName, questionsData, 0, () => {
       this.onFinish(this.results);
@@ -67,14 +101,26 @@ export class GameFieldPage extends Control {
       onFinish();
       return;
     }
+    let _quest: Control;
     this.progressIndicatior.node.textContent = `${index + 1} / ${
       questions.length
     }`;
     this.answerIndicatior.node.textContent = this.results
       .map((item) => (item ? "+" : "-"))
       .join(" ");
+
+    if (this.gameOptions.settings.timeEnable) {
+      this.timer.start(this.gameOptions.settings.time);
+      this.timer.onTimeout = () => {
+        _quest.destroy;
+        this.results.push(false);
+        this.questionCycle(gameName, questions, index + 1, onFinish);
+      };
+    }
+
     if (gameName === "artists") {
       const question = new ArtistQuestionView(this.node, questions[index]);
+      _quest = question;
       question.onAnswer = (answerIndex) => {
         question.destroy();
         this.results.push(answerIndex === questions[index].correctAnswerIndex);
@@ -82,6 +128,7 @@ export class GameFieldPage extends Control {
       };
     } else if (gameName === "pictures") {
       const question = new PictureQuestionView(this.node, questions[index]);
+      _quest = question;
       question.onAnswer = (answerIndex) => {
         question.destroy();
         this.results.push(answerIndex === questions[index].correctAnswerIndex);
@@ -90,5 +137,10 @@ export class GameFieldPage extends Control {
     } else {
       throw new Error("Game type is not exist");
     }
+  }
+
+  destroy() {
+    this.timer.stop();
+    super.destroy();
   }
 }

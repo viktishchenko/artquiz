@@ -1,5 +1,5 @@
 import Control from "../common/control";
-import { SettingsPage } from "./settingsPage";
+import { SettingsModel, SettingsPage } from "./settingsPage";
 import { CategoriesPage } from "./categoriesPage";
 import { GameFieldPage } from "./gameFieldPage";
 import { GameOverPage } from "./gameOverPage";
@@ -8,10 +8,13 @@ import { QuizDataModel } from "./quizDataModel";
 
 export class App extends Control {
   model: QuizDataModel;
+  settingsModel: SettingsModel;
   constructor(parentNode: HTMLElement) {
     super(parentNode);
     // preloader
     const preloader = new Control(this.node, "div", "", "loading...");
+    this.settingsModel = new SettingsModel();
+    this.settingsModel.loadFormStorage();
     this.model = new QuizDataModel();
     this.model.build().then((result) => {
       preloader.destroy();
@@ -33,7 +36,11 @@ export class App extends Control {
 
     const gameField = new GameFieldPage(
       this.node,
-      { gameName: gameName, categoryIndex: categoryIndex },
+      {
+        gameName: gameName,
+        categoryIndex: categoryIndex,
+        settings: this.settingsModel.getData(),
+      },
       questions
     );
     gameField.onHome = () => {
@@ -84,14 +91,17 @@ export class App extends Control {
 
     startPage.onSettings = () => {
       startPage.destroy();
-      const settingsPage = new SettingsPage(this.node);
+      const settingsPage = new SettingsPage(
+        this.node,
+        this.settingsModel.getData()
+      );
       settingsPage.onBack = () => {
         settingsPage.destroy();
         this.mainCycle();
       };
       settingsPage.onSave = (settings) => {
-        console.log(`settings`, settings);
         settingsPage.destroy();
+        this.settingsModel.setData(settings);
         this.mainCycle();
       };
     };

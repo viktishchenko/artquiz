@@ -14,7 +14,7 @@ yarn build
 
 to bundle your application
 
-# Dev Steps
+# steps
 
 1. npm init
 2. npm i webpack -D
@@ -26,7 +26,9 @@ to bundle your application
    - dist
    - DS_Store)
 
-5. [original repo link](https://github.com/InikonZS/artquiz)
-6. git init
-7. git add .
-8. git cm "init: start art-quiz task"
+5. git init
+6. git add .
+7. git cm "init: start quiz-app task"
+
+<!-- git remote add origin git@github.com:viktishchenko/artquiz.git
+/ngit psh-->
