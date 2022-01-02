@@ -7,10 +7,21 @@
 
 ### Step 1 — Starting the TypeScript Project
 
-- `$ mkdir typescript-project`
-- `$ cd typescript-project`
-- `$ npm i typescript --save-dev`
-- `npx tsc --init`
+```
+ mkdir typescript-project
+```
+
+```
+cd typescript-project
+```
+
+```
+npm i typescript --save-dev
+```
+
+```
+npx tsc --init
+```
 
 #### typescript-project/tsconfig.json
 
@@ -38,20 +49,31 @@ export function hello(world: string = world): string {
 }
 ```
 
-- `npx tsc index.ts`
+```
+npx tsc index.ts
+```
 
 or
 
-- `npx tsc`
+```
+npx tsc
+```
 
 ### activate watch mode
 
-- `npx tsc -w`
+```
+npx tsc -w
+```
 
 ### Step 3 — Setting Up ESLint
 
-- `npm install eslint --save-dev`
-- `./node_modules/.bin/eslint --init`
+```
+npm install eslint --save-dev
+```
+
+```
+./node_modules/.bin/eslint --init
+```
 
 #### The first prompt will be:
 

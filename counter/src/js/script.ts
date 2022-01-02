@@ -1,18 +1,14 @@
-const btnWrapper = [...document.querySelector(".btn-wrapper").children];
+const btnWrapper: Element[] = Array.from(document.querySelectorAll(".btn"));
 
-const output = document.querySelector(".output");
-
-btnWrapper.forEach((el) => {
-  el.addEventListener("click", counterHandler);
-});
+const output = document.querySelector(".output") as HTMLElement;
 
 let count = 0;
-function counterHandler(e) {
+function counterHandler(e: any): void {
   const styles = e.target.classList;
   if (styles.contains("increase")) {
-    count++;
+    count += 1;
   } else if (styles.contains("decrease")) {
-    count--;
+    count -= 1;
   } else {
     count = 0;
   }
@@ -25,5 +21,9 @@ function counterHandler(e) {
     output.style.color = "#e2e2e2";
   }
 
-  output.textContent = count;
+  output.textContent = `${count}`;
 }
+
+btnWrapper.forEach((el) => {
+  el.addEventListener("click", counterHandler);
+});

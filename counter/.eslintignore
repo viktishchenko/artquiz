@@ -1,4 +1,4 @@
 {
-    "ignorePatterns": ["**/dist/*.js"],
+    "ignorePatterns": ["./dist/*.js"],
     "rules": {}
 }
