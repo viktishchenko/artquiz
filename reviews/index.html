@@ -20,7 +20,15 @@
       </div>
       <article class="reviewer">
         <div class="reviewer-controll">
-          <div class="dots" id="dots"></div>
+          <div class="dots" title="Click Me" id="dots"></div>
+          <div class="reviewer-alert">
+            <div class="card">
+              <div class="subject">
+                <h3>Success!</h3>
+                <p>The button was pressed.</p>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="reviewer-img">
           <img
@@ -35,19 +43,19 @@
         <div class="reviewer-info">
           <div class="module-item">
             <div class="module-title heading-text">Projects</div>
-            <div class="module-count heading-text">17</div>
+            <div class="module-count heading-text" id="projects">17</div>
           </div>
           <div class="module-item">
             <div class="module-title heading-text">Following</div>
-            <div class="module-count heading-text">159</div>
+            <div class="module-count heading-text" id="following">159</div>
           </div>
           <div class="module-item">
             <div class="module-title heading-text">Followers</div>
-            <div class="module-count heading-text">185</div>
+            <div class="module-count heading-text" id="followers">185</div>
           </div>
         </div>
         <div class="reviewer-desc">
-          <p class="desc-text">
+          <p class="desc-text" id="text">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati,
             odio aperiam? Ab perspiciatis repudiandae alias maxime molestiae
             veniam autem quisquam.
@@ -76,9 +84,9 @@
           </div>
         </div>
         <div class="reviewer-btn">
-          <button class="btn btn-left">«</button>
-          <button class="btn btn-basic">Surprise Me</button>
-          <button class="btn btn-right">»</button>
+          <button class="btn btn-left" id="prev">«</button>
+          <button class="btn btn-basic" id="random">Surprise Me</button>
+          <button class="btn btn-right" id="next">»</button>
         </div>
       </article>
     </main>
