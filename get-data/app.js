@@ -80,9 +80,17 @@ const menu = [
     img: "https://via.placeholder.com/450x300",
     desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
   },
+  {
+    id: 11,
+    title: "bison steak",
+    category: "shmule",
+    price: 50.99,
+    img: "https://via.placeholder.com/450x300",
+    desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
+  },
 ];
 
-const sectionCenter = document.querySelector(".section-center");
+/* const sectionCenter = document.querySelector(".section-center");
 const btnContainer = document.querySelector(".btn-container");
 
 function getLoopData(menuItem) {
@@ -148,5 +156,64 @@ function getGategories() {
 window.addEventListener("DOMContentLoaded", function () {
   getLoopData(menu);
   getGategories();
+}); */
+
+const sectionCenter = document.querySelector(".section-center");
+const btnContainer = document.querySelector(".btn-container");
+
+function displayMenuItems(menuItem) {
+  let itemsContent = menuItem.map((el) => {
+    return `<article class="menu-item">
+            <img
+              src="${el.img}"
+              alt="${el.title}"
+              class="photo"
+            />
+            <div class="item-info">
+              <header>
+                <h4>${el.title}</h4>
+                <h4 class="price">${el.price}</h4>
+              </header>
+              <p class="item-text">
+                ${el.desc}
+              </p>
+              <h4>${el.category}</h4>
+            </div>
+          </article>`;
+  });
+  itemsContent = itemsContent.join("");
+  sectionCenter.innerHTML = itemsContent;
+}
+
+function displayMenuBtns() {
+  const filterBtns = ["all", ...new Set(menu.map((el) => el.category))];
+  const allBtns = filterBtns
+    .map((el) => {
+      return `<button type="button" class="filter-btn" data-id="${el}">
+          ${el}
+        </button>`;
+    })
+    .join("");
+  btnContainer.innerHTML = allBtns;
+  const filterBtn = document.querySelectorAll(".filter-btn");
+  filterBtn.forEach((el) => {
+    el.addEventListener("click", function () {
+      let category = el.dataset.id;
+      const menuCategory = menu.filter((el) => {
+        if (el.category === category) {
+          return el;
+        }
+      });
+      if (category === "all") {
+        displayMenuItems(menu);
+      } else {
+        displayMenuItems(menuCategory);
+      }
+    });
+  });
+}
+
+window.addEventListener("DOMContentLoaded", function () {
+  displayMenuItems(menu);
+  displayMenuBtns();
 });
-// window.addEventListener("DOMContentLoaded", getLoopData(menu));
