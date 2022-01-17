@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="./assets/favicon/check_icon.ico"
+      type="image/x-icon"
+    />
+    <title>Video player</title>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body class="body">
+    <main class="main">
+      <h1 class="main-heading">Video Player</h1>
+      <div class="main-container">
+        <video
+          src="./assets/media/Nyan_Cat.mp4"
+          poster="./assets/media/poster.jpg"
+          class="video-player"
+        ></video>
+        <button class="player__button"></button>
+        <div class="player__controls">
+          <button class="player__controls-btn player__controls-play"></button>
+          <input
+            class="player__controls-progress progress"
+            id="progress"
+            type="range"
+            value="0"
+            min="0"
+            max="100"
+            step="1"
+          />
+          <button
+            class="player__controls-volume player__controls-volume_yep"
+          ></button>
+          <input
+            class="player__controls-volume-input progress"
+            id="volume"
+            type="range"
+            value="30"
+            min="0"
+            max="100"
+            step="1"
+          />
+          <button
+            class="player__controls-fullscreen player__controls-fullscreen_yep"
+            title="Press Enter switch full-screen"
+          ></button>
+        </div>
+      </div>
+      <p class="footer-text">
+        github:
+        <a class="link" href="https://github.com/viktishchenko/js-projects">
+          tishchenko</a
+        >
+      </p>
+    </main>
+    <script src="./assets/js/script.js"></script>
+  </body>
+</html>
