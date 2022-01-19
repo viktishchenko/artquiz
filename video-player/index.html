@@ -19,13 +19,15 @@
         <video
           src="./assets/media/Nyan_Cat.mp4"
           poster="./assets/media/poster.jpg"
-          class="video-player"
+          class="player video-player"
         ></video>
-        <button class="player__button"></button>
+        <button class="player player__button"></button>
         <div class="player__controls">
-          <button class="player__controls-btn player__controls-play"></button>
+          <button
+            class="player player__controls-btn player__controls-play"
+          ></button>
           <input
-            class="player__controls-progress progress"
+            class="player__controls-progress progress-bar progress-video"
             id="progress"
             type="range"
             value="0"
@@ -37,10 +39,10 @@
             class="player__controls-volume player__controls-volume_yep"
           ></button>
           <input
-            class="player__controls-volume-input progress"
+            class="player__controls-volume-input progress-bar progress-sound"
             id="volume"
             type="range"
-            value="30"
+            value="20"
             min="0"
             max="100"
             step="1"
