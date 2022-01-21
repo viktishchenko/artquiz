@@ -200,6 +200,7 @@ Scroll
 nav {
   background: var(--clr-white);
   padding: 1rem 1.5rem;
+  transition: var(--transition);
 }
 /* fixed nav */
 .fixed-nav {
@@ -209,6 +210,12 @@ nav {
   width: 100%;
   background: var(--clr-white);
   box-shadow: var(--light-shadow);
+}
+.scroll-bottom {
+  transform: translateY(-100%);
+}
+.scroll-top {
+  transform: translateY(0);
 }
 .fixed-nav .links a {
   color: var(--clr-grey-1);
