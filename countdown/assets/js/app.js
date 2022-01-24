@@ -142,9 +142,10 @@ console.log("currenSeconds :>> ", currenSeconds);
 Future Time (today plus 10 days)
 =============
 */
-
+const deadline = document.querySelector(".deadline");
 const todayPlusTenDays = new Date();
-todayPlusTenDays.setDate(currentDate.getDate() + 10);
+// todayPlusTenDays.setDate(currentDate.getDate());// current
+todayPlusTenDays.setDate(currentDate.getDate() + 10); // plus day
 console.log("todayPlusTenDays :>> ", todayPlusTenDays);
 const throughTenDaysYear = todayPlusTenDays.getFullYear();
 console.log("throughTenDaysYear :>> ", throughTenDaysYear);
@@ -173,8 +174,10 @@ const futureYear = futureData.getFullYear();
 console.log("futureYear :>> ", futureYear);
 const futureMonth = months[futureData.getMonth()];
 console.log("futureMonth :>> ", futureMonth);
-const futureWeekday = weekdays[futureData.getDate()];
+const futureWeekday = weekdays[futureData.getDay()];
 console.log("futureWeekday :>> ", futureWeekday);
+const futureDay = futureData.getDate();
+console.log("futureDay :>> ", futureDay);
 const futureHours = futureData.getHours();
 console.log("futureHours :>> ", futureHours);
 const futureMinutes = futureData.getMinutes();
@@ -182,7 +185,7 @@ console.log("futureMinutes :>> ", futureMinutes);
 const futureSeconds = futureData.getSeconds();
 console.log("futureSeconds :>> ", futureSeconds);
 
-giveaway.textContent = `Giveaway ends on ${futureWeekday}, ${throughTenDaysDay} ${futureMonth} ${futureYear}, ${futureHours}:${futureMinutes}`;
+giveaway.textContent = `Giveaway ends on ${futureWeekday}, ${futureDay} ${futureMonth} ${futureYear}, ${futureHours}:${futureMinutes}am`;
 
 function countdownStart() {
   const today = Date.now();
@@ -200,7 +203,15 @@ function countdownStart() {
   const countdown = document.querySelectorAll(".deadline-format h4");
 
   countdown.forEach((el, idx) => {
-    el.innerHTML = countdownArray[idx];
+    if (countdownArray[idx] < 10) {
+      el.innerHTML = `${"0"}${countdownArray[idx]}`;
+    } else {
+      el.innerHTML = countdownArray[idx];
+    }
+    if (countdownArray[idx] < 0) {
+      clearInterval(init);
+      deadline.innerHTML = `<h4 class="expired">sorry, this giveaway has expired!</h4>`;
+    }
   });
 }
 
