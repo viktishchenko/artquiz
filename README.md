@@ -7,3 +7,7 @@
 ## c-flipper project
 
 [in action →](https://viktishchenko.github.io/js-projects/c-flipper/)
+
+## custom player project
+
+[in action →](https://viktishchenko.github.io/js-projects/player/)
