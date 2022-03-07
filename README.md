@@ -11,3 +11,7 @@
 ## custom player project
 
 [in action →](https://viktishchenko.github.io/js-projects/player/)
+
+## todo project
+
+[in action →](https://viktishchenko.github.io/js-projects/todo/)
