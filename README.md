@@ -15,3 +15,7 @@
 ## todo project
 
 [in action →](https://viktishchenko.github.io/js-projects/todo/)
+
+## change-lang project
+
+[in action →](https://viktishchenko.github.io/js-projects/change-lang/)
