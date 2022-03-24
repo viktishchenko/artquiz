@@ -55,3 +55,7 @@
 ## scroll project
 
 [in action →](https://viktishchenko.github.io/js-projects/scroll/)
+
+## sidebar project
+
+[in action →](https://viktishchenko.github.io/js-projects/sidebar/)
