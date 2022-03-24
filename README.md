@@ -31,3 +31,7 @@
 ## countdown project
 
 [in action →](https://viktishchenko.github.io/js-projects/countdown/)
+
+## fetch-data project
+
+[in action →](https://viktishchenko.github.io/js-projects/get-data/)
