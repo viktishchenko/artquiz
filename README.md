@@ -35,3 +35,7 @@
 ## fetch-data project
 
 [in action →](https://viktishchenko.github.io/js-projects/get-data/)
+
+## lorem project
+
+[in action →](https://viktishchenko.github.io/js-projects/lorem/)
