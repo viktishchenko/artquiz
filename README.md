@@ -47,3 +47,7 @@
 ## navbar project
 
 [in action →](https://viktishchenko.github.io/js-projects/modal/)
+
+## reviews project
+
+[in action →](https://viktishchenko.github.io/js-projects/reviews/)
