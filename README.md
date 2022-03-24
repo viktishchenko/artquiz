@@ -43,3 +43,7 @@
 ## modal project
 
 [in action →](https://viktishchenko.github.io/js-projects/modal/)
+
+## navbar project
+
+[in action →](https://viktishchenko.github.io/js-projects/modal/)
