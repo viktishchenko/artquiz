@@ -39,3 +39,7 @@
 ## lorem project
 
 [in action →](https://viktishchenko.github.io/js-projects/lorem/)
+
+## modal project
+
+[in action →](https://viktishchenko.github.io/js-projects/modal/)
