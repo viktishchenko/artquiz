@@ -59,3 +59,7 @@
 ## sidebar project
 
 [in action →](https://viktishchenko.github.io/js-projects/sidebar/)
+
+## slider project
+
+[in action →](https://viktishchenko.github.io/js-projects/slider/)
