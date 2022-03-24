@@ -23,3 +23,7 @@
 ## color-theme project
 
 [in action →](https://viktishchenko.github.io/js-projects/color-theme/)
+
+## counter project
+
+[in action →](https://viktishchenko.github.io/js-projects/counter/)
