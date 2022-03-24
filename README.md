@@ -19,3 +19,7 @@
 ## change-lang project
 
 [in action →](https://viktishchenko.github.io/js-projects/change-lang/)
+
+## color-theme project
+
+[in action →](https://viktishchenko.github.io/js-projects/color-theme/)
