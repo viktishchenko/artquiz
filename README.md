@@ -46,8 +46,12 @@
 
 ## navbar project
 
-[in action →](https://viktishchenko.github.io/js-projects/modal/)
+[in action →](https://viktishchenko.github.io/js-projects/navbar/)
 
 ## reviews project
 
 [in action →](https://viktishchenko.github.io/js-projects/reviews/)
+
+## scroll project
+
+[in action →](https://viktishchenko.github.io/js-projects/scroll/)
