@@ -63,3 +63,11 @@
 ## slider project
 
 [in action →](https://viktishchenko.github.io/js-projects/slider/)
+
+## tabs project
+
+[in action →](https://viktishchenko.github.io/js-projects/tabs/tabs)
+
+## video-player project
+
+[in action →](https://viktishchenko.github.io/js-projects/video/video-player)
