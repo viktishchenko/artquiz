@@ -20,6 +20,7 @@ function togglePlayPause() {
     mainPlayButton.hidden = true;
     playerControlsBtn.classList.remove("player__controls-play");
     playerControlsBtn.classList.add("player__controls-pause");
+    video.volume = 0.2;
     video.play();
   } else {
     mainPlayButton.hidden = false;
